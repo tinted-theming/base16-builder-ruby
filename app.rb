@@ -29,7 +29,17 @@ if update
   clone_or_update(path: sources_dir, name: "schemes", url: schemes_url)
   clone_or_update(path: sources_dir, name: "templates", url: templates_url)
 
+  # 3. Clone repositories defined in list.yaml to /schemes and /templates
+  schemes = YAML.load(File.read("sources/schemes/list.yaml"))
+  templates = YAML.load(File.read("sources/templates/list.yaml"))
 
+  schemes.each do |k, v|
+    clone_or_update(path: "schemes", name: k, url: v)
+  end
+
+  templates.each do |k, v|
+    clone_or_update(path: "templates", name: k, url: v)
+  end
 end
 
 
