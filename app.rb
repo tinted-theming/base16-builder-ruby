@@ -42,6 +42,19 @@ if update
 end
 
 
-# 3. TODO: Clear out any old output
-# 4. TODO: Iterate through each scheme
-  # 5. TODO: Iterate through each template for each scheme
+# 4. TODO: Clear out any old output
+
+# Iterate through each scheme
+Dir["schemes/**/*.yaml"].each do |scheme_file|
+
+  # Iterate through each template directory
+  Dir["templates/**/templates/"].each do |template_dir|
+    config_file = File.join(template_dir, "config.yaml")
+    config = YAML.load(File.read(config_file))
+
+    # Iterate through each mustache template for this template dir
+    Dir["#{template_dir}/*.mustache"].each do |template_file|
+      # ap template_file
+    end
+  end
+end
