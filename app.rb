@@ -27,5 +27,5 @@ end
 
 
 # 3. TODO: Clear out any old output
-# 3. TODO: Iterate through each scheme
-  # 4. TODO: Iterate through each template for each scheme
+# 4. TODO: Iterate through each scheme
+  # 5. TODO: Iterate through each template for each scheme
