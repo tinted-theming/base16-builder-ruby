@@ -1,28 +1,35 @@
 require "git"
 require "yaml"
 
+# If repository `name` exists at `path`, pull from it, otherwise clone it there
+def clone_or_update(path:, name:, url:)
+  repo_path = "#{path}/#{name}"
+
+  ap "clone_or_update(path: #{path}, name: #{name}, url: #{url})"
+  if Dir.exists?(repo_path)
+    repo = Git.open(repo_path)
+    repo.pull
+  else
+    Git.clone(url, name, path: path)
+  end
+end
+
 # 1. Parse YAML File
 yaml = YAML.load(File.read("sources.yaml"))
 schemes_url = yaml["schemes"]
 templates_url = yaml["templates"]
 
-schemes_repo_path = "./sources/schemes"
-templates_repo_path = "./sources/templates"
+sources_dir = "sources"
 
-# 2. Clone repositories defined in parsed file to sources folder or pull if they exist
+update = true
 
-if Dir.exists?(schemes_repo_path)
-  schemes_repo = Git.open(schemes_repo_path)
-  schemes_repo.pull
-else
-  Git.clone(schemes_url, "schemes", path: "./sources")
-end
+# TODO: Only update repos if they don't exist or if the update command is passed in
+if update
+  # 2. Clone repositories defined in parsed file to sources folder or pull if they exist
+  clone_or_update(path: sources_dir, name: "schemes", url: schemes_url)
+  clone_or_update(path: sources_dir, name: "templates", url: templates_url)
 
-if Dir.exists?(templates_repo_path)
-  templates_repo = Git.open(templates_repo_path)
-  templates_repo.pull
-else
-  Git.clone(templates_url, "templates", path: "./sources")
+
 end
 
 
