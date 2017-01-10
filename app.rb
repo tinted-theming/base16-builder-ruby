@@ -5,7 +5,6 @@ require "yaml"
 def clone_or_update(path:, name:, url:)
   repo_path = "#{path}/#{name}"
 
-  ap "clone_or_update(path: #{path}, name: #{name}, url: #{url})"
   if Dir.exists?(repo_path)
     repo = Git.open(repo_path)
     repo.pull
