@@ -1,15 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    chroma (0.1.0)
     git (1.3.0)
     mustache (1.0.3)
+    slugify (1.0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  chroma
   git
   mustache (~> 1.0)
+  slugify
 
 BUNDLED WITH
    1.13.7
