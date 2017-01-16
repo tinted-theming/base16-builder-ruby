@@ -16,9 +16,6 @@ class Base16Repository
     repo = Base16Repository.new(path: @@sources_dir,
                                 name: key,
                                 url: url)
-
-    repo.clone unless repo.exists?
-    repo
   end
   
   def self.schemes_repo
