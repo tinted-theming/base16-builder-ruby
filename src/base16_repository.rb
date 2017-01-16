@@ -44,7 +44,7 @@ class Base16Repository
   end
 
   def clone
-    Git.clone(@url, @name, path: @path)
+    Git.clone(@url, @name, path: @path, depth: 1)
   end
 
   def exists?
