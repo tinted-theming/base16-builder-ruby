@@ -36,6 +36,7 @@ class Base16Repository
 
   def update
     if exists?
+      puts "Pulling #{@repo_path}..."
       repo = Git.open(@repo_path)
       repo.pull
     else
@@ -44,6 +45,7 @@ class Base16Repository
   end
 
   def clone
+    puts "Cloning #{@repo_path}..."
     Git.clone(@url, @name, path: @path, depth: 1)
   end
 

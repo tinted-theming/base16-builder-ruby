@@ -32,6 +32,7 @@ class Template
 
       Dir.mkdir(rendered_dir) unless Dir.exists?(rendered_dir)
 
+      puts "building #{rendered_dir}/#{rendered_filename}"
       File.write("#{rendered_dir}/#{rendered_filename}", rendered_template)
     end
   end
