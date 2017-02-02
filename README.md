@@ -4,7 +4,11 @@ This is a work in progress and aims to build a base16 builder as defined by the 
 Cloning git repositories is a bit slow and needs some work.
 
 ## Requirements
-* Ruby 2.3.0+
+* Ruby 2.3.0+ (You can use [rbenv](https://github.com/rbenv/rbenv) or [rvm](https://rvm.io/) to acquire a specific Ruby version)
+* [Bundler](http://bundler.io/)
+
+## Installation
+If you have all the requirements listed above, `cd` to the directory where you cloned this repository to then run `bundle install`. If everything succeeds you should be able to use it as described below.
 
 ## Usage
 
