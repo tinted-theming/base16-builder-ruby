@@ -26,11 +26,11 @@ class Template
 
       template_file = "#{@template_dir}/#{key}.mustache"
       rendered_filename = "base16-#{scheme.slug}#{template_file_config["extension"]}"
-      rendered_dir = "#{@template_dir}/#{template_file_config["output"]}"
+      rendered_dir = "out/#{template_file_config["output"]}"
 
       rendered_template = Mustache.render(File.read(template_file), template_data)
 
-      Dir.mkdir(rendered_dir) unless Dir.exists?(rendered_dir)
+      FileUtils.mkdir_p(rendered_dir) unless Dir.exists?(rendered_dir)
 
       puts "building #{rendered_dir}/#{rendered_filename}"
       File.write("#{rendered_dir}/#{rendered_filename}", rendered_template)
