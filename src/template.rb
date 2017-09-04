@@ -59,6 +59,10 @@ class Template
       data["#{base_key}-rgb-r"] = rgb[0]
       data["#{base_key}-rgb-g"] = rgb[1]
       data["#{base_key}-rgb-b"] = rgb[2]
+
+      data["#{base_key}-dec-r"] = rgb[0].to_i / 255.0
+      data["#{base_key}-dec-g"] = rgb[1].to_i / 255.0
+      data["#{base_key}-dec-b"] = rgb[2].to_i / 255.0
     end
 
     data
