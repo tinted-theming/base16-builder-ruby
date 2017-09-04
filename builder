@@ -41,9 +41,6 @@ class Builder < Thor
   desc "build", "Builds all templates for all schemes into ./outputs/"
 
   def build
-    schemes_repo = Base16Repository.schemes_repo
-    templates_repo = Base16Repository.schemes_repo
-
     invoke :update unless required_dirs_exist?
 
     schemes = Scheme.load_schemes
