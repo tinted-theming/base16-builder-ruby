@@ -1,5 +1,5 @@
 # base16-builder-ruby
-This is a base16 builder written in Ruby as defined by the [base16 builder guidelines](https://github.com/chriskempson/base16/blob/c0df4c759ea9c71e7319b73da63ee3c41a4258df/builder.md) version 0.8.1
+This is a base16 builder written in Ruby as defined by the [base16 builder guidelines](https://github.com/chriskempson/base16/blob/39d01a0248c7b28863ebafca66d7e1f5ca867b13/builder.md) version 0.9.0
 
 ## Requirements
 * Ruby 2.3.0+ (You can use [rbenv](https://github.com/rbenv/rbenv) or [rvm](https://rvm.io/) to acquire a specific Ruby version)
