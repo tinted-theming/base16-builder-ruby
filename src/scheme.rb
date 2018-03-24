@@ -9,7 +9,7 @@ class Scheme
 
   def self.load_schemes
     schemes = []
-    Dir["schemes/**/*.yaml"].each do |scheme_file|
+    Dir["schemes/*/*.yaml"].each do |scheme_file|
       schemes << Scheme.new(file_path: scheme_file)
     end
 
