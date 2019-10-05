@@ -1,4 +1,5 @@
 require "slugify"
+require "safe_yaml/load"
 
 class Scheme
 
@@ -17,7 +18,7 @@ class Scheme
   end
 
   def initialize(file_path:)
-    yaml = YAML.load(File.read(file_path))
+    yaml = SafeYAML.load(File.read(file_path))
     filename = File.basename(file_path, ".yaml")
 
     @author = yaml["author"]

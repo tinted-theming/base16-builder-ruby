@@ -1,4 +1,5 @@
 require "git"
+require "safe_yaml/load"
 
 class Base16Repository
 
@@ -8,16 +9,16 @@ class Base16Repository
   attr_accessor :repo_path
 
   def self.repo_from_sources_yaml(key:)
-    yaml = YAML.load(File.read(@@sources_filename))
+    yaml = SafeYAML.load(File.read(@@sources_filename))
     url = yaml[key]
-    
+
     return nil unless url
 
     repo = Base16Repository.new(path: @@sources_dir,
                                 name: key,
                                 url: url)
   end
-  
+
   def self.schemes_repo
     repo_from_sources_yaml(key: "schemes")
   end
@@ -63,11 +64,11 @@ class Base16Repository
 
   def scheme_repo_urls
     return nil unless exists? && is_scheme_list_repo?
-    YAML.load(File.read("#{@repo_path}/list.yaml"))
+    SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
   end
 
   def template_repo_urls
     return nil unless exists? && is_template_list_repo?
-    YAML.load(File.read("#{@repo_path}/list.yaml"))
+    SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
   end
 end
