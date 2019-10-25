@@ -1,5 +1,6 @@
 require "mustache"
 require "chroma"
+require "safe_yaml/load"
 
 class Template
 
@@ -16,7 +17,7 @@ class Template
 
   def initialize(template_dir:, config_file:)
     @template_dir = template_dir
-    @config = YAML.load(File.read(config_file))
+    @config = SafeYAML.load(File.read(config_file))
 
   end
 
