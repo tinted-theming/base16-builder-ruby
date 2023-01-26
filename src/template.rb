@@ -31,7 +31,7 @@ class Template
 
       rendered_template = Mustache.render(File.read(template_file), template_data)
 
-      FileUtils.mkdir_p(rendered_dir) unless Dir.exists?(rendered_dir)
+      FileUtils.mkdir_p(rendered_dir) unless Dir.exist?(rendered_dir)
 
       puts "building #{rendered_dir}/#{rendered_filename}"
       File.write("#{rendered_dir}/#{rendered_filename}", rendered_template)
