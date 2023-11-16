@@ -11,8 +11,8 @@ class Builder < Thor
 
   no_commands do
     def required_dirs_exist?
-      return Dir.exists?("sources") && Dir.exists?("schemes") &&
-        Dir.exists?("templates")
+      return Dir.exist?("sources") && Dir.exist?("schemes") &&
+        Dir.exist?("templates")
     end
   end
   desc "update", "Re-acquires all sources, schemes, and templates"

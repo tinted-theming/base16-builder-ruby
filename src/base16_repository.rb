@@ -36,7 +36,7 @@ class Base16Repository
   end
 
   def update
-    if exists?
+    if exist?
       puts "Pulling #{@repo_path}..."
       repo = Git.open(@repo_path)
       repo.pull
@@ -50,8 +50,8 @@ class Base16Repository
     Git.clone(@url, @name, path: @path, depth: 1)
   end
 
-  def exists?
-    Dir.exists?(@repo_path)
+  def exist?
+    Dir.exist?(@repo_path)
   end
 
   def is_scheme_list_repo?
@@ -63,12 +63,12 @@ class Base16Repository
   end
 
   def scheme_repo_urls
-    return nil unless exists? && is_scheme_list_repo?
+    return nil unless exist? && is_scheme_list_repo?
     SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
   end
 
   def template_repo_urls
-    return nil unless exists? && is_template_list_repo?
+    return nil unless exist? && is_template_list_repo?
     SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
   end
 end
