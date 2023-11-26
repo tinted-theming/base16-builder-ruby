@@ -2,7 +2,7 @@
 require "thor"
 require "parallel"
 
-Dir["src/*.rb"].each { |file| require_relative file }
+Dir["src/*.rb"].sort.each { |file| require_relative file }
 
 PROCESS_COUNT = 6
 
@@ -11,7 +11,7 @@ class Builder < Thor
 
   no_commands do
     def required_dirs_exist?
-      return Dir.exist?("sources") && Dir.exist?("schemes") &&
+      Dir.exist?("sources") && Dir.exist?("schemes") &&
         Dir.exist?("templates")
     end
   end
@@ -24,8 +24,8 @@ class Builder < Thor
     schemes_repo.update
     templates_repo.update
 
-    schemes_list = YAML.load(File.read("sources/schemes/list.yaml"))
-    templates_list = YAML.load(File.read("sources/templates/list.yaml"))
+    schemes_list = YAML.load_file("sources/schemes/list.yaml")
+    templates_list = YAML.load_file("sources/templates/list.yaml")
 
     Parallel.each(schemes_list, in_processes: PROCESS_COUNT) do |k, v|
       # These repos now 404 on GitHub, maybe they were taken private?

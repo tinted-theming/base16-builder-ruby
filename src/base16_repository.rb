@@ -2,7 +2,6 @@ require "git"
 require "safe_yaml/load"
 
 class Base16Repository
-
   @@sources_filename = "sources.yaml"
   @@sources_dir = "sources"
 
@@ -14,9 +13,11 @@ class Base16Repository
 
     return nil unless url
 
-    repo = Base16Repository.new(path: @@sources_dir,
-                                name: key,
-                                url: url)
+    Base16Repository.new(
+      path: @@sources_dir,
+      name: key,
+      url: url
+    )
   end
 
   def self.schemes_repo

@@ -3,7 +3,6 @@ require "chroma"
 require "safe_yaml/load"
 
 class Template
-
   def self.load_templates
     templates = []
 
@@ -18,7 +17,6 @@ class Template
   def initialize(template_dir:, config_file:)
     @template_dir = template_dir
     @config = SafeYAML.load(File.read(config_file))
-
   end
 
   def render(scheme:)

@@ -2,7 +2,6 @@ require "slugify"
 require "safe_yaml/load"
 
 class Scheme
-
   attr_reader :name
   attr_reader :slug
   attr_reader :author
@@ -23,10 +22,10 @@ class Scheme
 
     @author = yaml["author"]
     @name = yaml["scheme"]
-    @slug =  filename.slugify
+    @slug = filename.slugify
     @bases = {}
 
-    bases = %w(00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F)
+    bases = %w[00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F]
 
     bases.each do |b|
       key = "base#{b}"
