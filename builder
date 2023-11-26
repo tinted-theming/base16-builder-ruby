@@ -28,11 +28,15 @@ class Builder < Thor
     templates_list = YAML.load(File.read("sources/templates/list.yaml"))
 
     Parallel.each(schemes_list, in_processes: PROCESS_COUNT) do |k, v|
+      # These repos now 404 on GitHub, maybe they were taken private?
+      next if v.include? "aramisgithub"
       repo = Base16Repository.new(path: "schemes", name: k, url: v)
       repo.update
     end
 
     Parallel.each(templates_list, in_processes: PROCESS_COUNT) do |k, v|
+      # textadept has moved their config file for some reason
+      next if v.include? "textadept"
       repo = Base16Repository.new(path: "templates", name: k, url: v)
       repo.update
     end
