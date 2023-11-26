@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+
+require "bundler/setup"
+require "base16/builder"
+
 require "thor"
 require "parallel"
 
@@ -48,7 +52,7 @@ class Builder < Thor
     invoke :update unless required_dirs_exist?
 
     schemes = Scheme.load_schemes
-    templates = Template.load_templates
+    templates = Base16::Builder::Template.load_templates
 
     Parallel.each(schemes, in_processes: PROCESS_COUNT) do |s|
       templates.each do |t|

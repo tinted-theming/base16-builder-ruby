@@ -2,6 +2,8 @@
 
 require_relative "builder/version"
 
+require_relative "builder/template"
+
 module Base16
   module Builder
   end
