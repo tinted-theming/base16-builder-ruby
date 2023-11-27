@@ -51,7 +51,7 @@ class Builder < Thor
   def build
     invoke :update unless required_dirs_exist?
 
-    schemes = Scheme.load_schemes
+    schemes = Base16::Builder::Scheme.load_schemes
     templates = Base16::Builder::Template.load_templates
 
     Parallel.each(schemes, in_processes: PROCESS_COUNT) do |s|

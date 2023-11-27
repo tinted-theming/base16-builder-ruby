@@ -5,6 +5,7 @@ PATH
       chroma (~> 0.2)
       mustache (~> 1.0)
       safe_yaml (~> 1.0)
+      slugify (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -73,7 +74,6 @@ DEPENDENCIES
   git
   parallel
   rake (~> 13.0)
-  slugify
   standard (~> 1.3)
   thor
 
