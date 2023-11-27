@@ -3,6 +3,7 @@ PATH
   specs:
     base16-builder (0.0.1)
       chroma (~> 0.2)
+      git (~> 1.0)
       mustache (~> 1.0)
       safe_yaml (~> 1.0)
       slugify (~> 1.0)
@@ -71,7 +72,6 @@ PLATFORMS
 
 DEPENDENCIES
   base16-builder!
-  git
   parallel
   rake (~> 13.0)
   standard (~> 1.3)

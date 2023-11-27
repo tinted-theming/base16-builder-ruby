@@ -6,8 +6,6 @@ require "base16/builder"
 require "thor"
 require "parallel"
 
-Dir["src/*.rb"].sort.each { |file| require_relative file }
-
 PROCESS_COUNT = 6
 
 class Builder < Thor
@@ -22,8 +20,8 @@ class Builder < Thor
   desc "update", "Re-acquires all sources, schemes, and templates"
 
   def update
-    schemes_repo = Base16Repository.schemes_repo
-    templates_repo = Base16Repository.templates_repo
+    schemes_repo = Base16::Builder::Repository.schemes_repo
+    templates_repo = Base16::Builder::Repository.templates_repo
 
     schemes_repo.update
     templates_repo.update
@@ -34,14 +32,14 @@ class Builder < Thor
     Parallel.each(schemes_list, in_processes: PROCESS_COUNT) do |k, v|
       # These repos now 404 on GitHub, maybe they were taken private?
       next if v.include? "aramisgithub"
-      repo = Base16Repository.new(path: "schemes", name: k, url: v)
+      repo = Base16::Builder::Repository.new(path: "schemes", name: k, url: v)
       repo.update
     end
 
     Parallel.each(templates_list, in_processes: PROCESS_COUNT) do |k, v|
       # textadept has moved their config file for some reason
       next if v.include? "textadept"
-      repo = Base16Repository.new(path: "templates", name: k, url: v)
+      repo = Base16::Builder::Repository.new(path: "templates", name: k, url: v)
       repo.update
     end
   end

@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "chroma", "~> 0.2"
+  spec.add_dependency "git", "~> 1.0"
   spec.add_dependency "mustache", "~> 1.0"
   spec.add_dependency "safe_yaml", "~> 1.0"
   spec.add_dependency "slugify", "~> 1.0"
