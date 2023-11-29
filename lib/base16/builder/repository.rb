@@ -1,5 +1,4 @@
 require "git"
-require "safe_yaml/load"
 
 module Base16
   module Builder
@@ -10,7 +9,7 @@ module Base16
       attr_accessor :repo_path
 
       def self.repo_from_sources_yaml(key:)
-        yaml = SafeYAML.load(File.read(@@sources_filename))
+        yaml = Psych.safe_load_file(@@sources_filename)
         url = yaml[key]
 
         return nil unless url
@@ -67,12 +66,12 @@ module Base16
 
       def scheme_repo_urls
         return nil unless exist? && is_scheme_list_repo?
-        SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
+        Psych.safe_load_file("#{@repo_path}/list.yaml")
       end
 
       def template_repo_urls
         return nil unless exist? && is_template_list_repo?
-        SafeYAML.load(File.read("#{@repo_path}/list.yaml"))
+        Psych.safe_load_file("#{@repo_path}/list.yaml")
       end
     end
   end

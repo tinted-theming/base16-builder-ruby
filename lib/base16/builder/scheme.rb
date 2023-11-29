@@ -1,5 +1,4 @@
 require "slugify"
-require "safe_yaml/load"
 
 module Base16
   module Builder
@@ -19,7 +18,7 @@ module Base16
       end
 
       def initialize(file_path:)
-        yaml = SafeYAML.load(File.read(file_path))
+        yaml = Psych.safe_load_file(file_path)
         filename = File.basename(file_path, ".yaml")
 
         @author = yaml["author"]

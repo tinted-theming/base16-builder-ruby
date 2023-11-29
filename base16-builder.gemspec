@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "chroma", "~> 0.2"
   spec.add_dependency "git", "~> 1.0"
   spec.add_dependency "mustache", "~> 1.0"
-  spec.add_dependency "safe_yaml", "~> 1.0"
+  spec.add_dependency "psych", ">= 4.0", "< 6"
   spec.add_dependency "slugify", "~> 1.0"
 end

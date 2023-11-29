@@ -1,6 +1,5 @@
 require "mustache"
 require "chroma"
-require "safe_yaml/load"
 
 module Base16
   module Builder
@@ -18,7 +17,7 @@ module Base16
 
       def initialize(template_dir:, config_file:)
         @template_dir = template_dir
-        @config = SafeYAML.load(File.read(config_file))
+        @config = Psych.safe_load_file(config_file)
       end
 
       def render(scheme:)

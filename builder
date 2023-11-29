@@ -26,8 +26,8 @@ class Builder < Thor
     schemes_repo.update
     templates_repo.update
 
-    schemes_list = YAML.load_file("sources/schemes/list.yaml")
-    templates_list = YAML.load_file("sources/templates/list.yaml")
+    schemes_list = Psych.safe_load_file("sources/schemes/list.yaml")
+    templates_list = Psych.safe_load_file("sources/templates/list.yaml")
 
     Parallel.each(schemes_list, in_processes: PROCESS_COUNT) do |k, v|
       # These repos now 404 on GitHub, maybe they were taken private?
