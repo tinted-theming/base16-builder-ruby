@@ -4,15 +4,13 @@ require "chroma"
 module Base16
   module Builder
     class Template
-      def self.load_templates
-        templates = []
-
-        Dir["templates/**/templates"].each do |template_dir|
-          config_file = File.join(template_dir, "config.yaml")
-          templates << Template.new(template_dir: template_dir, config_file: config_file)
+      class << self
+        def all
+          @all ||= Dir["templates/**/templates"].map do |template_dir|
+            config_file = File.join(template_dir, "config.yaml")
+            Template.new(template_dir: template_dir, config_file: config_file)
+          end
         end
-
-        templates
       end
 
       def initialize(template_dir:, config_file:)

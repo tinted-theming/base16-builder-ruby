@@ -8,13 +8,10 @@ module Base16
       attr_reader :author
       attr_reader :bases
 
-      def self.load_schemes
-        schemes = []
-        Dir["schemes/*/*.yaml"].each do |scheme_file|
-          schemes << Scheme.new(file_path: scheme_file)
+      class << self
+        def all
+          @all ||= Dir["schemes/*/*.yaml"].map { |file_path| Scheme.new(file_path: file_path) }
         end
-
-        schemes
       end
 
       def initialize(file_path:)

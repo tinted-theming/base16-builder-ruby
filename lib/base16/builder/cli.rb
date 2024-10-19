@@ -51,8 +51,8 @@ module Base16
       def build
         invoke :update unless required_dirs_exist?
 
-        schemes = Base16::Builder::Scheme.load_schemes
-        templates = Base16::Builder::Template.load_templates
+        schemes = Scheme.all
+        templates = Template.all
 
         Parallel.each(schemes, in_processes: PROCESS_COUNT) do |s|
           templates.each do |t|
