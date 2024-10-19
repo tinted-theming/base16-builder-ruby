@@ -15,18 +15,27 @@ module Base16
 
       def initialize(template_dir:, config_file:)
         @template_dir = template_dir
-        @config = Psych.safe_load_file(config_file)
+
+        @mustaches = Psych.safe_load_file(config_file).map do |key, template_file_config|
+          mustache = Mustache.new
+          mustache.template_file = "#{@template_dir}/#{key}.mustache"
+          mustache.render
+
+          [
+            mustache,
+            template_file_config
+          ]
+        end
       end
 
       def render(scheme:)
-        @config.each do |key, template_file_config|
+        @mustaches.each do |mustache, template_file_config|
           template_data = build_template_data(scheme: scheme)
 
-          template_file = "#{@template_dir}/#{key}.mustache"
+          rendered_template = mustache.render(template_data)
+
           rendered_filename = "base16-#{scheme.slug}#{template_file_config["extension"]}"
           rendered_dir = "out/#{template_file_config["output"]}"
-
-          rendered_template = Mustache.render(File.read(template_file), template_data)
 
           FileUtils.mkdir_p(rendered_dir) unless Dir.exist?(rendered_dir)
 
