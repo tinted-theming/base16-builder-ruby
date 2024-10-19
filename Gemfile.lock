@@ -7,6 +7,7 @@ PATH
       mustache (~> 1.0)
       psych (>= 4.0, < 6)
       slugify (~> 1.0)
+      thor (~> 1.3)
 
 GEM
   remote: https://rubygems.org/
