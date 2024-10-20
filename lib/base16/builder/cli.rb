@@ -54,8 +54,10 @@ module Base16
         schemes = Scheme.all
         templates = Template.all
 
-        Parallel.each(schemes, in_processes: PROCESS_COUNT) do |s|
-          templates.each do |t|
+        Parallel.each(templates, in_processes: PROCESS_COUNT) do |t|
+          t.mkdir_p
+
+          schemes.each do |s|
             t.render(scheme: s)
           end
         end
