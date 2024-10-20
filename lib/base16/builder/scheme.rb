@@ -35,28 +35,28 @@ module Base16
       def to_context
         @to_context ||= begin
           data = {
-            "scheme-name" => name,
-            "scheme-author" => author,
-            "scheme-slug" => slug
+            "scheme-name": name,
+            "scheme-author": author,
+            "scheme-slug": slug
           }
 
           bases.each do |base_key, base_color|
-            data["#{base_key}-hex"] = base_color
+            data[:"#{base_key}-hex"] = base_color
 
-            data["#{base_key}-hex-r"] = base_color[0, 2]
-            data["#{base_key}-hex-g"] = base_color[2, 2]
-            data["#{base_key}-hex-b"] = base_color[4, 2]
+            data[:"#{base_key}-hex-r"] = base_color[0, 2]
+            data[:"#{base_key}-hex-g"] = base_color[2, 2]
+            data[:"#{base_key}-hex-b"] = base_color[4, 2]
 
             # Turn hex color into an array of [r, g, b]
             rgb = base_color.paint.to_rgb.scan(/\d+/)
 
-            data["#{base_key}-rgb-r"] = rgb[0]
-            data["#{base_key}-rgb-g"] = rgb[1]
-            data["#{base_key}-rgb-b"] = rgb[2]
+            data[:"#{base_key}-rgb-r"] = rgb[0]
+            data[:"#{base_key}-rgb-g"] = rgb[1]
+            data[:"#{base_key}-rgb-b"] = rgb[2]
 
-            data["#{base_key}-dec-r"] = rgb[0].to_i / 255.0
-            data["#{base_key}-dec-g"] = rgb[1].to_i / 255.0
-            data["#{base_key}-dec-b"] = rgb[2].to_i / 255.0
+            data[:"#{base_key}-dec-r"] = rgb[0].to_i / 255.0
+            data[:"#{base_key}-dec-g"] = rgb[1].to_i / 255.0
+            data[:"#{base_key}-dec-b"] = rgb[2].to_i / 255.0
           end
 
           data
