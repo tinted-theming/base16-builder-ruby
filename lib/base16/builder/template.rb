@@ -6,17 +6,20 @@ module Base16
     class Template
       class << self
         def all
-          @all ||= Dir["templates/**/templates"].map do |template_dir|
-            config_file = File.join(template_dir, "config.yaml")
-            Template.new(template_dir: template_dir, config_file: config_file)
-          end
+          @all ||= Dir["templates/**/templates"].map { |dir| from(dir) }
+        end
+
+        def from(template_dir)
+          template_configs = Psych.safe_load_file(File.join(template_dir, "config.yaml"))
+
+          new(template_dir, template_configs)
         end
       end
 
-      def initialize(template_dir:, config_file:)
+      def initialize(template_dir, template_configs)
         @template_dir = template_dir
 
-        @mustaches = Psych.safe_load_file(config_file).map do |key, template_file_config|
+        @mustaches = template_configs.map do |key, template_file_config|
           mustache = Mustache.new
           mustache.template_file = "#{@template_dir}/#{key}.mustache"
           mustache.render
