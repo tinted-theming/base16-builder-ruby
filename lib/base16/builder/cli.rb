@@ -32,9 +32,6 @@ module Base16
         templates_list = Psych.safe_load_file("sources/templates/list.yaml")
 
         Parallel.each(schemes_list, in_processes: PROCESS_COUNT) do |k, v|
-          # These repos now 404 on GitHub, maybe they were taken private?
-          next if v.include? "aramisgithub"
-          next if ["qualia"].include? k
           repo = Base16::Builder::Repository.new(path: "schemes", name: k, url: v)
           repo.update
         end
