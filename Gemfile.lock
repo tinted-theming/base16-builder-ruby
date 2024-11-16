@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     base16-builder (0.0.1)
-      chroma (~> 0.2)
       git (~> 1.0)
       mustache (~> 1.0)
       psych (>= 4.0, < 6)
@@ -15,7 +14,6 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
-    chroma (0.2.0)
     git (1.19.1)
       addressable (~> 2.8)
       rchardet (~> 1.8)

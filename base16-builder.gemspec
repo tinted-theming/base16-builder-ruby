@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "chroma", "~> 0.2"
   spec.add_dependency "git", "~> 1.0"
   spec.add_dependency "mustache", "~> 1.0"
   spec.add_dependency "psych", ">= 4.0", "< 6"

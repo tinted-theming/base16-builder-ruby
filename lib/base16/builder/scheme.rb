@@ -1,4 +1,3 @@
-require "chroma"
 require "slugify"
 
 module Base16
@@ -43,20 +42,25 @@ module Base16
           bases.each do |base_key, base_color|
             data[:"#{base_key}-hex"] = base_color
 
-            data[:"#{base_key}-hex-r"] = base_color[0, 2]
-            data[:"#{base_key}-hex-g"] = base_color[2, 2]
-            data[:"#{base_key}-hex-b"] = base_color[4, 2]
+            r = base_color[0, 2]
+            g = base_color[2, 2]
+            b = base_color[4, 2]
 
-            # Turn hex color into an array of [r, g, b]
-            rgb = base_color.paint.to_rgb.scan(/\d+/)
+            data[:"#{base_key}-hex-r"] = r
+            data[:"#{base_key}-hex-g"] = g
+            data[:"#{base_key}-hex-b"] = b
 
-            data[:"#{base_key}-rgb-r"] = rgb[0]
-            data[:"#{base_key}-rgb-g"] = rgb[1]
-            data[:"#{base_key}-rgb-b"] = rgb[2]
+            r = r.to_i(16)
+            g = g.to_i(16)
+            b = b.to_i(16)
 
-            data[:"#{base_key}-dec-r"] = rgb[0].to_i / 255.0
-            data[:"#{base_key}-dec-g"] = rgb[1].to_i / 255.0
-            data[:"#{base_key}-dec-b"] = rgb[2].to_i / 255.0
+            data[:"#{base_key}-rgb-r"] = r.to_s
+            data[:"#{base_key}-rgb-g"] = g.to_s
+            data[:"#{base_key}-rgb-b"] = b.to_s
+
+            data[:"#{base_key}-dec-r"] = (r / 255.0).to_s
+            data[:"#{base_key}-dec-g"] = (g / 255.0).to_s
+            data[:"#{base_key}-dec-b"] = (b / 255.0).to_s
           end
 
           data
