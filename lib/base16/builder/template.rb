@@ -35,7 +35,6 @@ module Base16
       def render(scheme:)
         rendered_template = @mustache.render(scheme.to_context)
 
-        puts "building #{@rendered_dir}/base16-#{scheme.slug}#{@extension}"
         File.write("#{@rendered_dir}/base16-#{scheme.slug}#{@extension}", rendered_template)
       end
     end

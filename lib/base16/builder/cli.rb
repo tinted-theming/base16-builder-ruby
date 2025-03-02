@@ -58,6 +58,8 @@ module Base16
           schemes.each do |s|
             t.render(scheme: s)
           end
+
+          $stderr.write "."
         end
       end
 
