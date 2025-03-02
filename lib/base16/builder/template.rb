@@ -29,7 +29,10 @@ module Base16
       end
 
       def mkdir_p
-        FileUtils.mkdir_p(@rendered_dir) unless Dir.exist?(@rendered_dir)
+        return if Dir.exist?(@rendered_dir)
+
+        require "fileutils"
+        FileUtils.mkdir_p(@rendered_dir)
       end
 
       def render(scheme:)
