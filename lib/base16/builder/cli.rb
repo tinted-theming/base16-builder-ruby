@@ -4,7 +4,6 @@ require "parallel"
 require "psych"
 require "thor"
 
-require_relative "repository"
 require_relative "scheme"
 require_relative "template"
 
@@ -22,6 +21,8 @@ module Base16
 
       desc "update", "Re-acquires all sources, schemes, and templates"
       def update
+        require_relative "repository"
+
         schemes_repo = Base16::Builder::Repository.schemes_repo
         templates_repo = Base16::Builder::Repository.templates_repo
 
