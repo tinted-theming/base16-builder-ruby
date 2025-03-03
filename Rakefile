@@ -2,7 +2,6 @@
 
 require "rake/clean"
 
-CLEAN.include("out")
 CLOBBER.include("schemes", "sources", "templates")
 
 require "bundler/gem_tasks"

@@ -27,6 +27,6 @@ Clones or pulls all sources, schemes, and templates repositories.
 ./builder
 ```
 
-Builds all templates and saves them in `/out/<dir>` where `<dir>` is defined by
+Builds all templates and saves them in `/templates/<dir>` where `<dir>` is defined by
 the template's configuration. If the necessary directories don't exist, it will
 call `./builder update`

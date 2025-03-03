@@ -25,7 +25,7 @@ module Base16
         @extension = template_config["extension"]
         @output = template_config["output"]
 
-        @rendered_dir = "out/#{@output}"
+        @rendered_dir = "#{template_dir}/../#{@output}"
       end
 
       def mkdir_p

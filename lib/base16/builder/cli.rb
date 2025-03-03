@@ -45,7 +45,7 @@ module Base16
         end
       end
 
-      desc "build", "Builds all templates for all schemes into ./outputs/"
+      desc "build", "Builds all templates for all schemes"
       def build
         invoke :update unless required_dirs_exist?
 
